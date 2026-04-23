@@ -1,0 +1,2203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills Catalog | Open Claw Skills</title>
+  <meta name="description" content="Browse 144+ pre-built OpenClaw skills for automation, AI, CRM, email marketing, and more.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #12121a;
+      --bg-card: #1a1a25;
+      --text-primary: #ffffff;
+      --text-secondary: #a0a0b0;
+      --accent-purple: #8b5cf6;
+      --accent-blue: #3b82f6;
+      --accent-coral: #f97316;
+      --accent-pink: #ec4899;
+      --accent-teal: #14b8a6;
+      --gradient-primary: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 50%, #14b8a6 100%);
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+    
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 0; position: sticky; top: 0;
+      background: rgba(10, 10, 15, 0.95); backdrop-filter: blur(10px); z-index: 100;
+    }
+    
+    .logo {
+      font-size: 1.5rem; font-weight: 800;
+      background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      text-decoration: none;
+    }
+    
+    .nav-links { display: flex; gap: 30px; align-items: center; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-cta { background: var(--gradient-primary); color: white !important; padding: 10px 24px; border-radius: 8px; font-weight: 600; }
+    
+    .hero { padding: 60px 0 40px; text-align: center; }
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; margin-bottom: 16px;
+      background: linear-gradient(135deg, #ffffff 0%, #c4b5fd 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero p { color: var(--text-secondary); font-size: 1.125rem; max-width: 600px; margin: 0 auto; }
+    
+    .filters {
+      display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+      padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .filter-btn {
+      background: var(--bg-card); border: 1px solid rgba(255,255,255,0.1);
+      color: var(--text-secondary); padding: 8px 20px; border-radius: 20px;
+      cursor: pointer; transition: all 0.3s; font-size: 0.9rem;
+    }
+    
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--gradient-primary); color: white; border-color: transparent;
+    }
+    
+    .skills-section { padding: 40px 0; }
+    
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    
+    .skill-card {
+      background: var(--bg-card); border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 16px; padding: 24px; transition: all 0.3s;
+      display: flex; flex-direction: column;
+    }
+    
+    .skill-card:hover {
+      border-color: rgba(139, 92, 246, 0.3); transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    
+    .skill-card.premium {
+      border-color: rgba(251, 191, 36, 0.2);
+    }
+    
+    .skill-card.premium:hover {
+      border-color: rgba(251, 191, 36, 0.4);
+    }
+    
+    .skill-badge {
+      display: inline-block; font-size: 0.7rem; font-weight: 700;
+      padding: 4px 10px; border-radius: 20px; margin-bottom: 12px;
+    }
+    
+    .skill-badge.premium {
+      background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #1a1a25;
+    }
+    
+    .skill-badge.onboarding {
+      background: linear-gradient(135deg, #10b981, #059669); color: white;
+    }
+    
+    .skill-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 12px;
+    }
+    
+    .skill-name { font-weight: 600; font-size: 1.1rem; }
+    
+    .skill-price {
+      background: var(--gradient-primary); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent; background-clip: text;
+      font-weight: 700; font-size: 1.125rem;
+    }
+    
+    .skill-card.premium .skill-price {
+      background: linear-gradient(135deg, #fbbf24, #f59e0b); -webkit-background-clip: text;
+    }
+    
+    .skill-desc {
+      color: var(--text-secondary); font-size: 0.9rem;
+      margin-bottom: 16px; flex-grow: 1; line-height: 1.5;
+    }
+    
+    .skill-meta {
+      display: flex; gap: 12px; font-size: 0.75rem;
+      color: var(--text-secondary); margin-bottom: 16px;
+    }
+    
+    .skill-tag {
+      background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 20px;
+    }
+    
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 12px 24px; border-radius: 10px; font-weight: 600; text-decoration: none;
+      transition: all 0.3s; border: none; cursor: pointer; font-size: 0.95rem; width: 100%;
+    }
+    
+    .btn-primary {
+      background: var(--gradient-primary); color: white;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px); box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+    }
+    
+    .btn-premium {
+      background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #1a1a25;
+    }
+    
+    .btn-premium:hover {
+      transform: translateY(-2px); box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);
+    }
+    
+    .category-section {
+      margin-bottom: 60px;
+    }
+    
+    .category-header {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 24px;
+    }
+    
+    .category-header h2 {
+      font-size: 1.5rem; font-weight: 700;
+    }
+    
+    .category-count {
+      background: rgba(255,255,255,0.05); padding: 4px 12px;
+      border-radius: 20px; font-size: 0.8rem; color: var(--text-secondary);
+    }
+    
+    footer {
+      padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.05);
+      text-align: center; color: var(--text-secondary); font-size: 0.9rem;
+    }
+    
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .skills-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <a href="/" class="logo"><img src="assets/images/logo.png" alt="Open Claw Skills" style="height: 50px; width: auto;"></a>
+      <div class="nav-links">
+        <a href="/shop">Skills</a>
+        <a href="/services">Services</a>
+        <a href="/services#onboarding">Onboarding</a>
+        <a href="/services#support">Support</a>
+        <a href="/shop" class="nav-cta">Get Started</a>
+      </div>
+    </nav>
+  </div>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Skills Catalog</h1>
+      <p>144+ pre-built OpenClaw skills to automate your business. From $19.</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">All Skills</button>
+      <button class="filter-btn" data-filter="premium">Premium</button>
+      <button class="filter-btn" data-filter="ai">AI & Content</button>
+      <button class="filter-btn" data-filter="automation">Automation</button>
+      <button class="filter-btn" data-filter="crm">CRM & Sales</button>
+      <button class="filter-btn" data-filter="email">Email Marketing</button>
+      <button class="filter-btn" data-filter="ecommerce">E-commerce</button>
+    </div>
+  </div>
+
+  <section class="skills-section">
+    <div class="container">
+
+      <!-- Included in Onboarding -->
+      <div class="category-section">
+        <div class="category-header">
+          <h2>🎁 Included in Onboarding</h2>
+          <span class="category-count" style="background: linear-gradient(135deg, #cd7f32, #fbbf24, #c0c0c0); color: #1a1a25; padding: 8px 20px; border-radius: 25px; font-weight: 700; font-size: 1rem; display: inline-block; margin-top: 10px;">🥉 5 skills with Bronze &nbsp;|&nbsp; 🥈 10 with Silver &nbsp;|&nbsp; 🥇 10+2 premium with Gold</span>
+        </div>
+        
+        <h3 style="color: #cd7f32; margin: 30px 0 20px; font-size: 1.25rem;">🥉 Bronze Package (5 Skills)</h3>
+        <div class="skills-grid">
+
+          <div class="skill-card">
+            <span class="skill-badge onboarding">FREE W/ ONBOARDING</span>
+            <div class="skill-header">
+              <span class="skill-name">Web Scraper Extractor</span>
+              <span class="skill-price">$79</span>
+            </div>
+            <p class="skill-desc">Data is the new oil, but most of it is trapped on websites. Web Scraper Extractor liberates it: monitor competitor pricing automatically, build lead lists from directories, aggregate news and conte...</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Data</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/web-scraper-extractor" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            <span class="skill-badge onboarding">FREE W/ ONBOARDING</span>
+            <div class="skill-header">
+              <span class="skill-name">Travel Planner</span>
+              <span class="skill-price">$39</span>
+            </div>
+            <p class="skill-desc">Plan perfect trips with AI assistance. Get itinerary suggestions, budget estimates, packing lists, and local recommendations for any destination.</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/travel-planner" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            <span class="skill-badge onboarding">FREE W/ ONBOARDING</span>
+            <div class="skill-header">
+              <span class="skill-name">Spreadsheet Automator</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">Automate spreadsheet tasks and workflows. Generate formulas, clean data, create reports, and connect sheets to other tools.</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Spreadsheets</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/spreadsheet-automator" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            <span class="skill-badge onboarding">FREE W/ ONBOARDING</span>
+            <div class="skill-header">
+              <span class="skill-name">SEO Content Writer</span>
+              <span class="skill-price">$79</span>
+            </div>
+            <p class="skill-desc">Create SEO-optimized content that ranks. Generate blog posts, articles, and website copy that satisfies both search engines and readers.</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Copywriting</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/seo-content-writer" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            <span class="skill-badge onboarding">FREE W/ ONBOARDING</span>
+            <div class="skill-header">
+              <span class="skill-name">Sales Funnel Copywriter</span>
+              <span class="skill-price">$129</span>
+            </div>
+            <p class="skill-desc">Write high-converting funnel copy from awareness to purchase. Create landing pages, sales pages, upsells, and email sequences that convert.</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Copywriting</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/sales-funnel-copywriter" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            <span class="skill-badge onboarding">FREE W/ ONBOARDING</span>
+            <div class="skill-header">
+              <span class="skill-name">Lead Magnet Creator</span>
+              <span class="skill-price">$97</span>
+            </div>
+            <p class="skill-desc">The money is in the list — but first, you need something worth subscribing for. Lead Magnet Creator generates high-converting opt-in offers in minutes: comprehensive ebooks that showcase your exper...</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/lead-magnet-creator" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            <span class="skill-badge onboarding">FREE W/ ONBOARDING</span>
+            <div class="skill-header">
+              <span class="skill-name">Data Analyst</span>
+              <span class="skill-price">$89</span>
+            </div>
+            <p class="skill-desc">You have more data than ever — but are you using it? Data Analyst turns spreadsheet chaos into clear insights: analyze sales data to find your best customers, generate reports that reveal hidden op...</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/data-analyst" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            <span class="skill-badge onboarding">FREE W/ ONBOARDING</span>
+            <div class="skill-header">
+              <span class="skill-name">Competitive Analyzer</span>
+              <span class="skill-price">$69</span>
+            </div>
+            <p class="skill-desc">Monitor your competition effortlessly. Track competitor pricing, messaging, product launches, and market positioning in real-time.</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/competitive-analyzer" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            <span class="skill-badge onboarding">FREE W/ ONBOARDING</span>
+            <div class="skill-header">
+              <span class="skill-name">AEO Optimizer</span>
+              <span class="skill-price">$59</span>
+            </div>
+            <p class="skill-desc">Optimize content for AI search engines. Structure your content to appear in AI-generated answers and conversational search results.</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/aeo-optimizer" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            <span class="skill-badge onboarding">FREE W/ ONBOARDING</span>
+            <div class="skill-header">
+              <span class="skill-name">SEO Content Writer</span>
+              <span class="skill-price">$79</span>
+            </div>
+            <p class="skill-desc">Create SEO-optimized content that ranks. Generate blog posts, articles, and website copy.</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Copywriting</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/seo-content-writer-2" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            <span class="skill-badge onboarding">FREE W/ ONBOARDING</span>
+            <div class="skill-header">
+              <span class="skill-name">AEO Optimizer</span>
+              <span class="skill-price">$59</span>
+            </div>
+            <p class="skill-desc">Optimize content for AI search engines. Structure your content to appear in AI-generated answers.</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/aeo-optimizer-2" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            <span class="skill-badge onboarding">FREE W/ ONBOARDING</span>
+            <div class="skill-header">
+              <span class="skill-name">Sales Funnel Copywriter</span>
+              <span class="skill-price">$129</span>
+            </div>
+            <p class="skill-desc">Write high-converting funnel copy from awareness to purchase. Landing pages, sales pages, upsells, and email sequences.</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Copywriting</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/sales-funnel-copywriter-2" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            <span class="skill-badge onboarding">FREE W/ ONBOARDING</span>
+            <div class="skill-header">
+              <span class="skill-name">Competitive Analyzer</span>
+              <span class="skill-price">$69</span>
+            </div>
+            <p class="skill-desc">Monitor your competition effortlessly. Track competitor pricing, messaging, product launches, and positioning.</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/competitive-analyzer-2" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            <span class="skill-badge onboarding">FREE W/ ONBOARDING</span>
+            <div class="skill-header">
+              <span class="skill-name">Data Analyst</span>
+              <span class="skill-price">$89</span>
+            </div>
+            <p class="skill-desc">Transform raw data into actionable insights. Analyze spreadsheets, generate reports, create visualizations.</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/data-analyst-2" class="btn btn-primary">Get This Skill →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Premium Skills -->
+      <div class="category-section">
+        <div class="category-header">
+          <h2>⭐ Premium Playbooks</h2>
+          <span class="category-count">19 skills</span>
+        </div>
+        <div class="skills-grid">
+
+          <div class="skill-card premium">
+            <span class="skill-badge premium">PREMIUM</span>
+            <div class="skill-header">
+              <span class="skill-name">ZipSkills</span>
+              <span class="skill-price">$129</span>
+            </div>
+            <p class="skill-desc">Single skills sell for $49-149. But skill bundles? They sell for $297, $497, even $997+. ZipSkills lets you package multiple related skills into cohesive bundles that solve complete problems for yo...</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/zipskills" class="btn btn-premium">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card premium">
+            <span class="skill-badge premium">PREMIUM</span>
+            <div class="skill-header">
+              <span class="skill-name">Video Sales Letter</span>
+              <span class="skill-price">$129</span>
+            </div>
+            <p class="skill-desc">Video Sales Letters are the highest-converting sales tool online — but hiring voice talent and video editors is expensive. This skill lets you create professional VSLs using AI voice cloning that s...</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Video</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/video-sales-letter" class="btn btn-premium">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card premium">
+            <span class="skill-badge premium">PREMIUM</span>
+            <div class="skill-header">
+              <span class="skill-name">Skill Creator V2.0</span>
+              <span class="skill-price">$129</span>
+            </div>
+            <p class="skill-desc">Want to create your own OpenClaw skills? This is the complete system used to build the skills in this store. 25+ slash commands guide you through every phase: concept, workflow design, API integrat...</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/skill-creator-v2" class="btn btn-premium">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card premium">
+            <span class="skill-badge premium">PREMIUM</span>
+            <div class="skill-header">
+              <span class="skill-name">Sales Page Skill</span>
+              <span class="skill-price">$129</span>
+            </div>
+            <p class="skill-desc">The #1 reason launches fail? Weak sales copy. This skill eliminates writer's block by generating complete sales pages using battle-tested frameworks like PAS, AIDA, and Storytelling. Every page is ...</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/sales-page-skill" class="btn btn-premium">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card premium">
+            <span class="skill-badge premium">PREMIUM</span>
+            <div class="skill-header">
+              <span class="skill-name">QuizForma</span>
+              <span class="skill-price">$149</span>
+            </div>
+            <p class="skill-desc">Static forms convert at 2-3%. Interactive quizzes? 30-50%+. QuizForma lets you build engaging quizzes that capture leads while gathering valuable data: personality assessments that segment your aud...</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/quizforma" class="btn btn-premium">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card premium">
+            <span class="skill-badge premium">PREMIUM</span>
+            <div class="skill-header">
+              <span class="skill-name">PostStream Social</span>
+              <span class="skill-price">$149</span>
+            </div>
+            <p class="skill-desc">Social media is a time sink that never ends — unless you automate it. PostStream lets you schedule weeks of content in one sitting: queue posts across Instagram, Twitter, Facebook, LinkedIn, and mo...</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Social</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/poststream-social" class="btn btn-premium">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card premium">
+            <span class="skill-badge premium">PREMIUM</span>
+            <div class="skill-header">
+              <span class="skill-name">Page Sprout V1.0</span>
+              <span class="skill-price">$149</span>
+            </div>
+            <p class="skill-desc">Every click matters when you're buying traffic. Page Sprout gives you the three pages every marketer needs: PopLinks for trackable, branded short links; Lead Pages for high-converting opt-ins; and ...</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/page-sprout-v1" class="btn btn-premium">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card premium">
+            <span class="skill-badge premium">PREMIUM</span>
+            <div class="skill-header">
+              <span class="skill-name">Mintbird</span>
+              <span class="skill-price">$149</span>
+            </div>
+            <p class="skill-desc">Every sale lost to a confusing checkout is money left on the table. Mintbird lets you build complete sales funnels that guide customers from first click to purchase: high-converting sales pages, mu...</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/mintbirdoc" class="btn btn-premium">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card premium">
+            <span class="skill-badge premium">PREMIUM</span>
+            <div class="skill-header">
+              <span class="skill-name">Master Copywriter</span>
+              <span class="skill-price">$129</span>
+            </div>
+            <p class="skill-desc">Great copy is the difference between a product that flops and one that sells out. This skill gives you a complete copywriting system: persuasion frameworks that guide prospects from problem to solu...</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Copywriting</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/master-copywriter" class="btn btn-premium">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card premium">
+            <span class="skill-badge premium">PREMIUM</span>
+            <div class="skill-header">
+              <span class="skill-name">Letterman Newsletter</span>
+              <span class="skill-price">$149</span>
+            </div>
+            <p class="skill-desc">Newsletters are the highest-ROI marketing channel — but creating content consistently is exhausting. Letterman automates the entire workflow: generate article ideas, create drafts using GPT, Gemini...</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/letterman-newsletter" class="btn btn-premium">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card premium">
+            <span class="skill-badge premium">PREMIUM</span>
+            <div class="skill-header">
+              <span class="skill-name">Inbox Copywriter</span>
+              <span class="skill-price">$129</span>
+            </div>
+            <p class="skill-desc">Your email list is your most valuable asset — but only if you know how to write emails that convert. This skill gives you proven frameworks for every email scenario: welcome sequences that build tr...</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Copywriting</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/inbox-copywriter" class="btn btn-premium">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card premium">
+            <span class="skill-badge premium">PREMIUM</span>
+            <div class="skill-header">
+              <span class="skill-name">Hero Section Generator</span>
+              <span class="skill-price">$129</span>
+            </div>
+            <p class="skill-desc">Most websites lose visitors in the first 5 seconds because their headline is weak. This skill generates hero section copy using proven frameworks: Pattern Interrupts that stop the scroll, Mechanism...</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/hero-section-generator" class="btn btn-premium">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card premium">
+            <span class="skill-badge premium">PREMIUM</span>
+            <div class="skill-header">
+              <span class="skill-name">Global Control V1</span>
+              <span class="skill-price">$149</span>
+            </div>
+            <p class="skill-desc">Your contact database is your business's most valuable asset — but only if you can actually use it. Global Control gives you complete command: tag contacts based on behavior, create laser-targeted ...</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/global-control-v1" class="btn btn-premium">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card premium">
+            <span class="skill-badge premium">PREMIUM</span>
+            <div class="skill-header">
+              <span class="skill-name">Course Sprout</span>
+              <span class="skill-price">$149</span>
+            </div>
+            <p class="skill-desc">Creating a course is hard enough without wrestling with tech. Course Sprout gives you everything you need to launch, host, and grow your online course business: course access management, membership...</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/course-sprout" class="btn btn-premium">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card premium">
+            <span class="skill-badge premium">PREMIUM</span>
+            <div class="skill-header">
+              <span class="skill-name">Support Retainer - 7 Tasks</span>
+              <span class="skill-price">$250</span>
+            </div>
+            <p class="skill-desc">Monthly support retainer ($250/month) including up to 6 tasks per month. Best value for active users who need regular assistance (~17% savings vs 2-task plan).</p>
+            <div class="skill-meta">
+              <span class="skill-tag">AI</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/support-retainer-7-tasks" class="btn btn-premium">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card premium">
+            <span class="skill-badge premium">PREMIUM</span>
+            <div class="skill-header">
+              <span class="skill-name">Support Retainer - 2 Tasks</span>
+              <span class="skill-price">$100</span>
+            </div>
+            <p class="skill-desc">Monthly support retainer ($100/month) including up to 2 tasks per month. Perfect for occasional updates, tweaks, and minor customizations.</p>
+            <div class="skill-meta">
+              <span class="skill-tag">AI</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/support-retainer-2-tasks" class="btn btn-premium">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card premium">
+            <span class="skill-badge premium">PREMIUM</span>
+            <div class="skill-header">
+              <span class="skill-name">OpenClaw Hosting - Annual</span>
+              <span class="skill-price">$997</span>
+            </div>
+            <p class="skill-desc">Managed hosting for your OpenClaw instance - Annual plan. Includes server maintenance, updates, backups, and standard support. Save $167 compared to monthly billing. Required for installation to fu...</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/openclaw-hosting-annual" class="btn btn-premium">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card premium">
+            <span class="skill-badge premium">PREMIUM</span>
+            <div class="skill-header">
+              <span class="skill-name">Pro Onboarding</span>
+              <span class="skill-price">$497</span>
+            </div>
+            <p class="skill-desc">Everything in Basic Onboarding plus installation for up to 5 additional premium skills (retail value up to $645).</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/pro-onboarding" class="btn btn-premium">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card premium">
+            <span class="skill-badge premium">PREMIUM</span>
+            <div class="skill-header">
+              <span class="skill-name">Basic Onboarding</span>
+              <span class="skill-price">$297</span>
+            </div>
+            <p class="skill-desc">Complete setup package including bot installation, 30-minute strategy call, configuration, and 10 skills ($739 value).</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/basic-onboarding" class="btn btn-premium">Get This Skill →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 🤖 AI & Content -->
+      <div class="category-section">
+        <div class="category-header">
+          <h2>🤖 AI & Content</h2>
+          <span class="category-count">67 skills</span>
+        </div>
+        <div class="skills-grid">
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Plaid Finance</span>
+              <span class="skill-price">$39</span>
+            </div>
+            <p class="skill-desc">"Unlock comprehensive financial data aggregation and account management with the Plaid API. This skill enables seamless bank account linking, real-tim</p>
+            <div class="skill-meta">
+              <span class="skill-tag">AI</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/plaid-finance" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Notion Workspace</span>
+              <span class="skill-price">$29</span>
+            </div>
+            <p class="skill-desc">"Seamlessly manage your Notion workspace with powerful automations. This skill enables creating, updating, and querying pages and databases, appending</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/notion-workspace" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Notion Productivity</span>
+              <span class="skill-price">$29</span>
+            </div>
+            <p class="skill-desc">Automate your Notion workflows by creating, searching, and managing pages, databases, and content blocks. Use this skill to integrate Notion with othe</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/notion-productivity" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Notion Ai Writer</span>
+              <span class="skill-price">$29</span>
+            </div>
+            <p class="skill-desc">Supercharge your Notion workspace with AI. This skill seamlessly integrates OpenAI's powerful generative capabilities to create, summarize, translate,</p>
+            <div class="skill-meta">
+              <span class="skill-tag">AI</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/notion-ai-writer" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Netlify Deploy</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Automate end-to-end website deployment and management on Netlify. Use this skill to deploy sites from a Git repository or local directory, manage DNS</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/netlify-deploy" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Monday Workspace</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Automate your entire Monday.com workflow. This skill provides comprehensive control over your workspace, enabling you to create, retrieve, update, an</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/monday-workspace" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Monday Productivity</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">Supercharge your Monday.com workflows by managing boards, items, updates, and users via the GraphQL API. Use this skill for automating project managem</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/monday-productivity" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Miro Boards</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Seamlessly manage and enrich Miro boards to supercharge team collaboration. This skill allows you to create, populate, and organize Miro boards with</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/miro-boards" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Make Automation</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Empower your agent to seamlessly manage and orchestrate Make.com (formerly Integromat) workflows. This skill provides robust capabilities for creatin</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/make-automation" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Mailgun Email</span>
+              <span class="skill-price">$39</span>
+            </div>
+            <p class="skill-desc">"Provides comprehensive control over the Mailgun email service. It enables sending transactional and bulk emails, managing domain configurations, hand</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Email</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/mailgun-email" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Magento Store</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Seamlessly manage your Adobe Commerce (Magento) store with comprehensive control over products, customers, and orders. Use this skill for real-time i</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/magento-store" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Linear Tracker</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Seamlessly manage your software development lifecycle with the Linear Tracker skill. Create, update, and search for issues, manage projects and cycle</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/linear-tracker" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Klaviyo Email</span>
+              <span class="skill-price">$39</span>
+            </div>
+            <p class="skill-desc">"Unlock comprehensive Klaviyo email marketing automation. This skill enables end-to-end management of your email marketing operations, from granular p</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Email</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/klaviyo-email" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Jotform Forms</span>
+              <span class="skill-price">$29</span>
+            </div>
+            <p class="skill-desc">"Automate form creation, submission management, and data analysis in Jotform. Use this skill to build dynamic data collection workflows, integrate for</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/jotform-forms" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Jira Issues</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Seamlessly manage Jira Cloud projects and issues via the REST API. This skill empowers you to create, update, and search for issues using JQL, transi</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/jira-issues" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Intercom Support</span>
+              <span class="skill-price">$29</span>
+            </div>
+            <p class="skill-desc">"Manages customer support and engagement using the Intercom API. Use this skill to handle conversations, manage contacts and companies, search and cre</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/intercom-support" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Imagekit Media</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Unlock powerful, on-the-fly image and video transformations, optimization, and delivery with the ImageKit API. Use this skill to manage your entire m</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/imagekit-media" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Gumroad Sales</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">Automate Gumroad sales, subscriber, and product management. Use this skill to get sales reports, manage digital products, track subscriber activity, g</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/gumroad-sales" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Google Forms</span>
+              <span class="skill-price">$29</span>
+            </div>
+            <p class="skill-desc">"Seamlessly create, manage, and analyze Google Forms and responses. Use this skill to build surveys, collect feedback, automate data entry from forms,</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/google-forms" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Google Drive</span>
+              <span class="skill-price">$19</span>
+            </div>
+            <p class="skill-desc">"Automate file management in Google Drive. This skill enables creating, searching, sharing, and organizing documents, spreadsheets, and folders to str</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://redeyedeal.com/google-drive" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Google Calendar</span>
+              <span class="skill-price">$19</span>
+            </div>
+            <p class="skill-desc">"Seamlessly manage Google Calendar to orchestrate events, schedules, and team availability. Use this skill for creating, searching, and updating calen</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Productivity</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/Mjk1NA==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Gmail Inbox</span>
+              <span class="skill-price">$39</span>
+            </div>
+            <p class="skill-desc">"Provides comprehensive, secure, and efficient management of Gmail inboxes. Use this skill to send, read, search, and organize emails, manage labels a</p>
+            <div class="skill-meta">
+              <span class="skill-tag">AI</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/Mjk1Mw==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Gitlab Repos</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Comprehensive GitLab project and repository management. Use this skill to create, list, and manage projects, repositories, merge requests, issues, pi</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/Mjk1MQ==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Github Repos</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Comprehensive GitHub repository management via the REST API. This skill enables end-to-end workflows including repository creation, issue tracking, p</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/Mjk1MA==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Gemini Assistant</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">A comprehensive skill for leveraging Google's Gemini 2.0 family of models (Flash and Pro) for advanced multimodal content generation, analysis, and in</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/Mjk0OQ==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Gcloud Manager</span>
+              <span class="skill-price">$69</span>
+            </div>
+            <p class="skill-desc">Seamlessly manage your entire Google Cloud Platform infrastructure. This skill empowers you to control Compute Engine, Cloud Storage, BigQuery, GKE,</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Cloud</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/Mjk0OA==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Freshsales CRM</span>
+              <span class="skill-price">$59</span>
+            </div>
+            <p class="skill-desc">Supercharge your sales pipeline by managing contacts, accounts, deals, and tasks in Freshsales CRM. Use this skill for full lifecycle sales management</p>
+            <div class="skill-meta">
+              <span class="skill-tag">CRM</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/Mjk0Nw==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Firebase Backend</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Provides comprehensive management of Firebase services via REST API, enabling interaction with Firestore, Realtime Database, Authentication, Cloud St</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/Mjk0Ng==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Figma Design</span>
+              <span class="skill-price">$39</span>
+            </div>
+            <p class="skill-desc">Seamlessly integrate with Figma to manage design files, components, and prototypes. Use this skill to automate design handoffs, export assets, and str</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/Mjk0NQ==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Elevenlabs Voice</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Unlock hyper-realistic text-to-speech (TTS) and voice cloning with the ElevenLabs API. Use this skill to generate high-quality audio for videos, podc</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/Mjk0NA==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Ecwid Store</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Seamlessly manage your Ecwid e-commerce store with comprehensive support for products, orders, customers, and more. Use this skill for all administra</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/Mjk0Mw==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Dub Links</span>
+              <span class="skill-price">$19</span>
+            </div>
+            <p class="skill-desc">"Supercharge your link management with the Dub.co API. Create, track, and manage branded short links, analyze click-through rates, and organize your m</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/Mjk0Mg==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Dropbox Storage</span>
+              <span class="skill-price">$19</span>
+            </div>
+            <p class="skill-desc">"Seamlessly manage and synchronize files, folders, and shared links with the Dropbox API. Use this skill to build robust workflows for cloud storage,</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/Mjk0MQ==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Discord Manager</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Provides comprehensive management of Discord servers, enabling automated moderation, user engagement, and content delivery. Use this skill to send ta</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/Mjk0MA==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Crisp Support</span>
+              <span class="skill-price">$29</span>
+            </div>
+            <p class="skill-desc">"Manages customer support and engagement using the Crisp API. This skill is ideal for handling conversations, managing contacts and companies, and acc</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjkzOA==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Copper CRM</span>
+              <span class="skill-price">$59</span>
+            </div>
+            <p class="skill-desc">"Seamlessly manage your entire Copper CRM workflow. This skill empowers you to create, retrieve, update, and delete leads, people, companies, opportun</p>
+            <div class="skill-meta">
+              <span class="skill-tag">CRM</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjkzNg==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Convertkit Email</span>
+              <span class="skill-price">$39</span>
+            </div>
+            <p class="skill-desc">"Provides comprehensive management of ConvertKit email marketing campaigns. Use this skill to handle subscribers, automate email sequences, manage tag</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Email</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjkzNQ==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Contentful CMS</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Seamlessly manage your entire Contentful stack. This skill empowers you to create, edit, publish, and archive content, manage assets, and even automa</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjkzNA==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Competitor Intelligence Monitor</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">A comprehensive intelligence agent that automates competitor monitoring across websites, pricing, product launches, customer reviews, and social media</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjkzMw==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Cold Outreach Sequencer</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Drives scalable B2B sales development by automating hyper-personalized cold email campaigns. It researches prospects, crafts unique AI-generated mess</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjkzMQ==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Cloudinary Media</span>
+              <span class="skill-price">$69</span>
+            </div>
+            <p class="skill-desc">"Seamlessly manage your entire media lifecycle on Cloudinary. This skill enables you to upload, transform, optimize, and deliver images and videos, as</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Cloud</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjkzMA==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Close CRM</span>
+              <span class="skill-price">$59</span>
+            </div>
+            <p class="skill-desc">Full Close CRM management — leads, contacts, opportunities, activities, email sequences, call logging, smart views, and pipeline analytics via the Clo</p>
+            <div class="skill-meta">
+              <span class="skill-tag">CRM</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjkyOQ==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Clickup Productivity</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Automate your entire ClickUp workflow. This skill enables you to create, retrieve, update, and delete tasks, manage project structures like spaces, f</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjkyOA==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Clickup Manager</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">Supercharge your productivity by managing ClickUp workspaces, projects, and tasks directly through chat. This skill enables you to create, assign, and</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjkyNw==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Claude Assistant</span>
+              <span class="skill-price">$39</span>
+            </div>
+            <p class="skill-desc">"Unlock advanced reasoning and analysis by integrating Anthropic's Claude 3.5 Sonnet. This skill enables sophisticated text generation, in-depth image</p>
+            <div class="skill-meta">
+              <span class="skill-tag">AI</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjkyNg==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Chargebee Billing</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Provides comprehensive, automated control over the Chargebee billing and subscription management platform. Use this skill for end-to-end revenue oper</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjkyNQ==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Calcom Scheduler</span>
+              <span class="skill-price">$19</span>
+            </div>
+            <p class="skill-desc">"Seamlessly manage your entire scheduling workflow on Cal.com. This skill empowers you to create and manage event types, control availability, handle</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjkyNA==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Brevo Email</span>
+              <span class="skill-price">$39</span>
+            </div>
+            <p class="skill-desc">"Powerfully manage your entire Brevo email marketing and transactional messaging workflow. This skill enables creating and sending dynamic email campa</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Email</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjkyMw==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Bitly Links</span>
+              <span class="skill-price">$19</span>
+            </div>
+            <p class="skill-desc">"Supercharge your link management with the Bitly API. This skill allows you to shorten URLs, create branded links, track detailed click analytics, and</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjkyMg==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Bigcommerce Store</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Seamlessly manage your BigCommerce store with comprehensive API-driven control. This skill empowers you to automate product catalog management, strea</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjkyMQ==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Beehiiv Newsletter</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Provides comprehensive management of Beehiiv newsletters, including publications, posts, subscribers, and segments. Activate this skill for tasks inv</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjkyMA==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Azure Manager</span>
+              <span class="skill-price">$69</span>
+            </div>
+            <p class="skill-desc">"Manages Microsoft Azure resources, including VMs, storage, and resource groups. Use this skill to automate Azure infrastructure provisioning, managem</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Cloud</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjkxOQ==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Aws Manager</span>
+              <span class="skill-price">$69</span>
+            </div>
+            <p class="skill-desc">"Provides comprehensive management of Amazon Web Services (AWS) resources. Use this skill for provisioning, monitoring, and administering core AWS ser</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Cloud</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjkxOA==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Attio CRM</span>
+              <span class="skill-price">$59</span>
+            </div>
+            <p class="skill-desc">Supercharge your customer relationship management by seamlessly integrating with Attio. This skill empowers you to create, retrieve, update, and delet</p>
+            <div class="skill-meta">
+              <span class="skill-tag">CRM</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjkxNw==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Asana Tasks</span>
+              <span class="skill-price">$29</span>
+            </div>
+            <p class="skill-desc">"Seamlessly manage your Asana workflows by creating, updating, and searching for tasks, projects, and subtasks. Use this skill to assign work, set dea</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjkxNg==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Asana Productivity</span>
+              <span class="skill-price">$29</span>
+            </div>
+            <p class="skill-desc">"Supercharge your productivity by managing Asana tasks, projects, and workflows directly from your command line. Use this skill to create, search, and</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjkxNQ==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Anthropic Assistant</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Activates the Anthropic Claude 3 model via the Messages API to perform advanced reasoning, text and vision analysis, and complex instruction-followin</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjkxNA==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Airtable Db</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Seamlessly manage and automate your Airtable databases. This skill empowers you to perform comprehensive CRUD operations on records, manage base sche</p>
+            <div class="skill-meta">
+              <span class="skill-tag">AI</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjkxMw==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Attio CRM</span>
+              <span class="skill-price">$59</span>
+            </div>
+            <p class="skill-desc">Supercharge your customer relationship management by seamlessly integrating with Attio.</p>
+            <div class="skill-meta">
+              <span class="skill-tag">CRM</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjkxMA==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Asana Tasks</span>
+              <span class="skill-price">$29</span>
+            </div>
+            <p class="skill-desc">Seamlessly manage your Asana workflows by creating, updating, and searching for tasks.</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjkwOQ==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Asana Productivity</span>
+              <span class="skill-price">$29</span>
+            </div>
+            <p class="skill-desc">Supercharge your productivity by managing Asana tasks, projects, and workflows.</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjkwOA==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Anthropic Assistant</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">Activates the Anthropic Claude 3 model via the Messages API for advanced reasoning and text analysis.</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjkwNw==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Airtable Db</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">Seamlessly manage and automate your Airtable databases. Perform comprehensive CRUD operations on records.</p>
+            <div class="skill-meta">
+              <span class="skill-tag">AI</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjkwNg==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">OpenClaw Hosting</span>
+              <span class="skill-price">$97</span>
+            </div>
+            <p class="skill-desc">Monthly managed hosting for your OpenClaw instance ($97/month). Includes server maintenance, updates, backups, and standard support. Required for installation to function.</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjY3NA==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">AI Organizer - Ultimate</span>
+              <span class="skill-price">$30</span>
+            </div>
+            <p class="skill-desc">Save Chats from 6 AI Tools</p>
+            <div class="skill-meta">
+              <span class="skill-tag">AI</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjIwMQ==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">AI Organizer - Advanced</span>
+              <span class="skill-price">$20</span>
+            </div>
+            <p class="skill-desc">Save Chats from 3 AI Tools</p>
+            <div class="skill-meta">
+              <span class="skill-tag">AI</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjIwMA==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">AI Organizer - Basic</span>
+              <span class="skill-price">$10</span>
+            </div>
+            <p class="skill-desc">Save Chats from 1 AI Tool</p>
+            <div class="skill-meta">
+              <span class="skill-tag">AI</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjE5OQ==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ⚙️ Automation & Tools -->
+      <div class="category-section">
+        <div class="category-header">
+          <h2>⚙️ Automation & Tools</h2>
+          <span class="category-count">43 skills</span>
+        </div>
+        <div class="skills-grid">
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Zoom Meetings</span>
+              <span class="skill-price">$19</span>
+            </div>
+            <p class="skill-desc">Automate Zoom meeting and webinar workflows, including scheduling, participant management, and cloud recording administration.</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MzAzNQ==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Zoho CRM</span>
+              <span class="skill-price">$59</span>
+            </div>
+            <p class="skill-desc">"Automate your entire sales and customer relationship lifecycle with the Zoho CRM skill. It provides comprehensive, expert-level control over leads, c</p>
+            <div class="skill-meta">
+              <span class="skill-tag">CRM</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MzAzNA==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Zendesk Support</span>
+              <span class="skill-price">$29</span>
+            </div>
+            <p class="skill-desc">"Automates comprehensive customer support operations in Zendesk. Use this skill to create, track, and update support tickets, manage users and organiz</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MzAzMg==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Zapier Automation</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Seamlessly manage and automate your Zapier workflows. This skill enables you to create, monitor, and manage Zaps, connections, and app triggers via t</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MzAzMQ==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Youtube Video</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Seamlessly manage your YouTube presence. This skill empowers you to upload videos, analyze performance with detailed channel and video statistics, ma</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Video</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MzAzMA==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Youtube Manager</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Provides comprehensive YouTube channel and video management. Use it to search for videos, manage playlists and subscriptions, upload content, and ret</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Video</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MzAyOQ==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Xano Backend</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Provides comprehensive management of Xano no-code backends. Use this skill for full CRUD operations on database records, user authentication, file ma</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MzAyOA==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Wordpress CMS</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Automate your WordPress content lifecycle. This skill empowers you to create, manage, and publish posts, pages, and media, as well as handle users, c</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MzAyNw==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Wistia Video</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">Seamlessly manage your entire Wistia video lifecycle, from uploading and organizing content in projects to accessing detailed analytics and customizin</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Video</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MzAyNQ==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Whatsapp Business</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Automate customer communication and manage workflows on the WhatsApp Business Cloud API. Use this skill to send transactional messages, marketing not</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MzAyNA==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Vercel Deploy</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Effortlessly deploy and manage your web projects on Vercel. This skill allows you to automate deployments, manage custom domains, configure environme</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MzAyMQ==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Unsplash Media</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Seamlessly search, discover, and integrate millions of high-resolution, royalty-free images from Unsplash directly into your projects. Use this skill</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MzAyMA==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Typeform Forms</span>
+              <span class="skill-price">$29</span>
+            </div>
+            <p class="skill-desc">"Seamlessly create, manage, and analyze Typeform surveys, forms, and quizzes. Use this skill to automate response collection, build custom onboarding</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MzAxOQ==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Twitter Social</span>
+              <span class="skill-price">$39</span>
+            </div>
+            <p class="skill-desc">"Seamlessly manage Twitter (X) presence by posting tweets, analyzing engagement, and monitoring brand mentions. Use this skill for comprehensive socia</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Social</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MzAxOA==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Twilio Comms</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Supercharge your applications with robust communication workflows using the Twilio API. This skill enables sending and receiving SMS, MMS, and WhatsA</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MzAxNw==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Trello Productivity</span>
+              <span class="skill-price">$29</span>
+            </div>
+            <p class="skill-desc">Supercharge your project management with seamless Trello integration. This skill empowers you to create, track, and manage Trello cards, boards, and l</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MzAxNg==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Trello Boards</span>
+              <span class="skill-price">$29</span>
+            </div>
+            <p class="skill-desc">"Automate Trello workflows with precision. This skill enables creating, managing, and organizing Trello boards, lists, and cards via the REST API. Use</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MzAxNQ==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Todoist Tasks</span>
+              <span class="skill-price">$29</span>
+            </div>
+            <p class="skill-desc">"Supercharge your productivity by managing Todoist tasks and projects via the REST API. Use this skill to create, assign, and track tasks, organize pr</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MzAxMw==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Todoist Productivity</span>
+              <span class="skill-price">$29</span>
+            </div>
+            <p class="skill-desc">Supercharge your productivity by managing Todoist tasks, projects, sections, and comments directly through the REST API. Use this skill to create, ret</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MzAxMg==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Telegram Bot</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Automate Telegram communications with a powerful bot. This skill enables sending targeted messages, managing group dynamics, distributing multimedia</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MzAxMQ==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Surveysparrow Forms</span>
+              <span class="skill-price">$29</span>
+            </div>
+            <p class="skill-desc">"Automate survey lifecycle and data collection using the SurveySparrow API. This skill enables creating, managing, and sharing surveys, as well as ret</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MzAxMA==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Supabase Db</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Provides comprehensive, high-level control over Supabase projects. Use it to manage database records, user authentication, file storage, and serverle</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MzAwOQ==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Stripe Payments</span>
+              <span class="skill-price">$59</span>
+            </div>
+            <p class="skill-desc">"Seamlessly integrate Stripe to manage the entire customer lifecycle, from creating customers and processing one-time charges to handling recurring su</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Payments</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MzAwOA==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Strapi CMS</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Seamlessly manage and automate your Strapi headless CMS. This skill empowers you to perform comprehensive content operations, including advanced filt</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MzAwNw==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Square Payments</span>
+              <span class="skill-price">$59</span>
+            </div>
+            <p class="skill-desc">"Empowers agents to manage the entire customer lifecycle with Square, from processing payments and creating invoices to managing customer data and inv</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MzAwNg==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Slack Manager</span>
+              <span class="skill-price">$29</span>
+            </div>
+            <p class="skill-desc">"Seamlessly manage your Slack workspace with advanced controls. This skill empowers you to automate messaging, manage channels and users, handle files</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MzAwNA==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Shopify Store</span>
+              <span class="skill-price">$59</span>
+            </div>
+            <p class="skill-desc">"Seamlessly manage your Shopify store with comprehensive support for products, orders, customers, and inventory. This skill enables automation of dail</p>
+            <div class="skill-meta">
+              <span class="skill-tag">E-commerce</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MzAwMg==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Sendgrid Email</span>
+              <span class="skill-price">$39</span>
+            </div>
+            <p class="skill-desc">"Provides comprehensive SendGrid email functionality, enabling the sending of transactional and marketing emails, dynamic template and contact list ma</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Email</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MzAwMA==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Sanity CMS</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Provides comprehensive, high-speed management of the Sanity.io headless CMS. Use this skill for advanced programmatic content operations, including G</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/Mjk5OQ==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Salesforce CRM</span>
+              <span class="skill-price">$59</span>
+            </div>
+            <p class="skill-desc">Supercharge your sales workflow by seamlessly managing Salesforce CRM data. This skill empowers you to create, retrieve, update, and delete records fo</p>
+            <div class="skill-meta">
+              <span class="skill-tag">CRM</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/Mjk5Nw==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Recurly Billing</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Manages the entire subscription lifecycle, from customer account creation to invoicing and revenue management, using the Recurly REST API. Activate t</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/Mjk5NQ==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Razorpay Payments</span>
+              <span class="skill-price">$59</span>
+            </div>
+            <p class="skill-desc">"Seamlessly integrate Razorpay to manage the entire payment lifecycle. This skill empowers you to create and manage orders, process domestic and inter</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/Mjk5NA==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Postmark Email</span>
+              <span class="skill-price">$39</span>
+            </div>
+            <p class="skill-desc">"Powerfully manage all aspects of your application's transactional email. This skill enables you to send individual and batch emails, manage dynamic t</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Email</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/Mjk5MQ==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Pipedrive CRM</span>
+              <span class="skill-price">$59</span>
+            </div>
+            <p class="skill-desc">"Seamlessly manage your entire sales pipeline and customer relationships in Pipedrive. This skill enables comprehensive control over deals, contacts,</p>
+            <div class="skill-meta">
+              <span class="skill-tag">CRM</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/Mjk4OQ==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Pexels Media</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">Seamlessly search and integrate millions of high-quality, royalty-free stock photos and videos from the Pexels library directly into your workflows. U</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/Mjk4OA==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">PDF Document Processor</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">Automate PDF workflows. Extract text, merge documents, add watermarks, and convert files with intelligent PDF processing capabilities.</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Documents</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/Mjk4Nw==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Paypal Payments</span>
+              <span class="skill-price">$59</span>
+            </div>
+            <p class="skill-desc">"Seamlessly integrate PayPal for secure payment processing, order management, and subscription handling. Use this skill to create and manage orders, c</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/Mjk4Ng==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Outlook Inbox</span>
+              <span class="skill-price">$49</span>
+            </div>
+            <p class="skill-desc">"Empowers agents to manage Outlook/Microsoft 365 inboxes by sending, reading, and searching emails, managing folders and rules, and integrating with c</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Automation</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/Mjk4NA==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Outlook Calendar</span>
+              <span class="skill-price">$19</span>
+            </div>
+            <p class="skill-desc">"Seamlessly manage your Microsoft Outlook Calendar. This skill empowers you to create, view, and modify calendar events, schedule and manage meetings,</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Productivity</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/Mjk4Mw==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Openai Assistant</span>
+              <span class="skill-price">$39</span>
+            </div>
+            <p class="skill-desc">Empowers agents to leverage OpenAI's state-of-the-art models for advanced AI tasks, including sophisticated chat interactions (GPT-4), stunning image</p>
+            <div class="skill-meta">
+              <span class="skill-tag">AI</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/Mjk4Mg==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Mailchimp Email</span>
+              <span class="skill-price">$39</span>
+            </div>
+            <p class="skill-desc">"Provides comprehensive management of Mailchimp email marketing operations. It allows for seamless handling of audiences (lists), subscriber managemen</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Email</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/Mjk3MA==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Hubspot CRM</span>
+              <span class="skill-price">$59</span>
+            </div>
+            <p class="skill-desc">"Unlock comprehensive HubSpot CRM management. This skill enables creating, reading, updating, and deleting contacts, companies, and deals. It also sup</p>
+            <div class="skill-meta">
+              <span class="skill-tag">CRM</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/Mjk1OQ==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Activecampaign Email</span>
+              <span class="skill-price">$39</span>
+            </div>
+            <p class="skill-desc">"Provides comprehensive access to the ActiveCampaign API for managing contacts, email campaigns, marketing automations, and sales CRM. Use this skill</p>
+            <div class="skill-meta">
+              <span class="skill-tag">Email</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MjkxMQ==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 🛒 E-commerce -->
+      <div class="category-section">
+        <div class="category-header">
+          <h2>🛒 E-commerce</h2>
+          <span class="category-count">1 skills</span>
+        </div>
+        <div class="skills-grid">
+
+          <div class="skill-card">
+            
+            <div class="skill-header">
+              <span class="skill-name">Woocommerce Store</span>
+              <span class="skill-price">$59</span>
+            </div>
+            <p class="skill-desc">"Unlock powerful e-commerce automation. This skill provides comprehensive control over your WooCommerce store via the REST API, enabling you to manage</p>
+            <div class="skill-meta">
+              <span class="skill-tag">E-commerce</span><span class="skill-tag">Integration</span>
+            </div>
+            <a href="https://app.mintbird.com/app/product/order-page/MzAyNg==" class="btn btn-primary">Get This Skill →</a>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Custom Builds Section -->
+      <div class="category-section" style="margin-top: 80px;">
+        <div class="category-header">
+          <h2>🔧 Custom Builds</h2>
+          <span class="category-count">Need something unique?</span>
+        </div>
+        <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 20px; padding: 40px;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+            <div>
+              <h3 style="font-size: 1.5rem; margin-bottom: 16px;">Can't find what you need?</h3>
+              <p style="color: var(--text-secondary); margin-bottom: 20px;">We build custom OpenClaw skills tailored to your specific workflow, niche, or software stack. From custom API integrations to proprietary automation workflows.</p>
+              <ul style="color: var(--text-secondary); margin-bottom: 24px; padding-left: 20px;">
+                <li style="margin-bottom: 8px;">Custom API and SaaS integrations</li>
+                <li style="margin-bottom: 8px;">Workflow-specific automations</li>
+                <li style="margin-bottom: 8px;">Internal tools and process accelerators</li>
+                <li>Private or client-specific skill builds</li>
+              </ul>
+              <a href="mailto:skills@aiopenclawskills.com?subject=Custom%20Skill%20Build%20Request" class="btn btn-primary" style="max-width: 250px;">Request Custom Build →</a>
+            </div>
+            <div style="text-align: center;">
+              <div style="font-size: 4rem; margin-bottom: 16px;">🛠️</div>
+              <p style="color: var(--text-secondary); font-size: 0.9rem;">Starting from $997<br>Typical delivery: 3-5 business days</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Open Claw Skills. 144+ pre-built OpenClaw skills for automation.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Simple filter functionality
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

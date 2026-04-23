@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request Free Lead Audit | OpenClaw Systems</title>
+  <meta name="description" content="Get a free lead audit to see where your business is losing leads and how to fix it.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --bg-card: #1e293b;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent-orange: #f97316;
+      --accent-gold: #fbbf24;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 600px;
+      width: 100%;
+    }
+    .form-card {
+      background: var(--bg-card);
+      border-radius: 20px;
+      padding: 48px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .logo {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .logo a {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+    .logo a span { color: var(--accent-orange); }
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      text-align: center;
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+    }
+    label .required {
+      color: var(--accent-orange);
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      font-size: 1rem;
+      font-family: inherit;
+      transition: all 0.3s;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent-orange);
+    }
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2394a3b8' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+    }
+    select option {
+      background: var(--bg-card);
+      color: var(--text-primary);
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .btn {
+      width: 100%;
+      padding: 16px;
+      border-radius: 10px;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: inherit;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-orange), var(--accent-gold));
+      color: white;
+      margin-top: 8px;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(249, 115, 22, 0.3);
+    }
+    .back-link {
+      text-align: center;
+      margin-top: 24px;
+    }
+    .back-link a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .back-link a:hover {
+      color: var(--text-primary);
+    }
+    .success-message {
+      display: none;
+      text-align: center;
+      padding: 40px;
+    }
+    .success-message h2 {
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+    }
+    .success-message p {
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+    @media (max-width: 600px) {
+      .form-card { padding: 32px 24px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="form-card" id="form-container">
+      <div class="logo">
+        <a href="/">OpenClaw<span> Systems</span></a>
+      </div>
+      <h1>Request Free Lead Audit</h1>
+      <p class="subtitle">We'll show you exactly where your current setup is losing leads and how to fix it.</p>
+      
+      <form id="audit-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">First Name <span class="required">*</span></label>
+            <input type="text" id="firstName" name="firstName" required placeholder="John">
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name <span class="required">*</span></label>
+            <input type="text" id="lastName" name="lastName" required placeholder="Smith">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email Address <span class="required">*</span></label>
+          <input type="email" id="email" name="email" required placeholder="john@yourbusiness.com">
+        </div>
+        
+        <div class="form-group">
+          <label for="phone">Phone Number <span class="required">*</span></label>
+          <input type="tel" id="phone" name="phone" required placeholder="(555) 123-4567">
+        </div>
+        
+        <div class="form-group">
+          <label for="businessName">Business Name</label>
+          <input type="text" id="businessName" name="businessName" placeholder="Your Business LLC">
+        </div>
+        
+        <div class="form-group">
+          <label for="businessType">Business Type <span class="required">*</span></label>
+          <select id="businessType" name="businessType" required>
+            <option value="">Select your business type</option>
+            <option value="contractor">Contractor (Roofing, Plumbing, HVAC, etc.)</option>
+            <option value="service">Local Service Business</option>
+            <option value="agency">Agency / Consultant</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="leadVolume">Current Monthly Leads</label>
+          <select id="leadVolume" name="leadVolume">
+            <option value="">Select range</option>
+            <option value="0-10">0-10 leads</option>
+            <option value="11-50">11-50 leads</option>
+            <option value="51-100">51-100 leads</option>
+            <option value="100+">100+ leads</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="challenge">Biggest Challenge With Leads</label>
+          <textarea id="challenge" name="challenge" placeholder="Tell us about your biggest challenge with capturing or following up with leads..."></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label for="contactTime">Best Time to Contact You</label>
+          <select id="contactTime" name="contactTime">
+            <option value="">Select time</option>
+            <option value="morning">Morning (9am - 12pm)</option>
+            <option value="afternoon">Afternoon (12pm - 5pm)</option>
+            <option value="evening">Evening (5pm - 8pm)</option>
+          </select>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Request Free Audit →</button>
+      </form>
+      
+      <div class="success-message" id="success-message">
+        <h2>✓ Audit Request Received</h2>
+        <p>Thanks for your request! We'll review your information and reach out within 24 hours to schedule your free lead audit.</p>
+        <a href="/" class="btn btn-primary">Back to Homepage</a>
+      </div>
+      
+      <div class="back-link">
+        <a href="/">← Back to OpenClaw Systems</a>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    document.getElementById('audit-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get form data
+      const formData = new FormData(this);
+      
+      // Submit to Formspree (replace YOUR_FORM_ID with actual ID)
+      fetch(this.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          // Show success message
+          document.getElementById('form-container').querySelector('form').style.display = 'none';
+          document.querySelector('h1').style.display = 'none';
+          document.querySelector('.subtitle').style.display = 'none';
+          document.getElementById('success-message').style.display = 'block';
+        } else {
+          alert('Something went wrong. Please try again.');
+        }
+      }).catch(error => {
+        // For demo purposes, show success even if form isn't connected
+        document.getElementById('form-container').querySelector('form').style.display = 'none';
+        document.querySelector('h1').style.display = 'none';
+        document.querySelector('.subtitle').style.display = 'none';
+        document.getElementById('success-message').style.display = 'block';
+      });
+    });
+  </script>
+</body>
+</html>

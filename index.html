@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenClaw Systems — Complete Open Claw System Setup</title>
+  <meta name="description" content="We design, install, and manage complete Open Claw systems so your workflows are connected, automated, and working the way they should.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --bg-card: #1e293b;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent-orange: #f97316;
+      --accent-gold: #fbbf24;
+      --accent-blue: #3b82f6;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    
+    /* Navigation */
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 0; position: sticky; top: 0;
+      background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); z-index: 100;
+    }
+    .logo { font-size: 1.5rem; font-weight: 800; color: var(--text-primary); text-decoration: none; }
+    .logo span { color: var(--accent-orange); }
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-cta {
+      background: linear-gradient(135deg, var(--accent-orange), var(--accent-gold));
+      color: white; padding: 12px 24px; border-radius: 8px;
+      font-weight: 600; text-decoration: none;
+    }
+    
+    /* Hero */
+    .hero {
+      padding: 100px 0 80px; text-align: center;
+      background: radial-gradient(ellipse at top, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
+    }
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; line-height: 1.1;
+      margin-bottom: 24px; max-width: 900px; margin-left: auto; margin-right: auto;
+    }
+    .hero h1 span { color: var(--accent-orange); }
+    .hero p {
+      font-size: 1.25rem; color: var(--text-secondary); max-width: 700px;
+      margin: 0 auto 40px;
+    }
+    .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 16px 32px; border-radius: 10px; font-weight: 600;
+      text-decoration: none; transition: all 0.3s; font-size: 1rem;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-orange), var(--accent-gold));
+      color: white; box-shadow: 0 4px 20px rgba(249, 115, 22, 0.3);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(249, 115, 22, 0.4); }
+    .btn-secondary {
+      background: var(--bg-card); color: var(--text-primary);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .trust-badges {
+      display: flex; gap: 32px; justify-content: center; margin-top: 48px;
+      color: var(--text-secondary); font-size: 0.9rem;
+    }
+    .trust-badges span { display: flex; align-items: center; gap: 8px; }
+    
+    /* Sections */
+    .section { padding: 80px 0; }
+    .section-header { text-align: center; margin-bottom: 60px; }
+    .section-header h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 16px; }
+    .section-header p { color: var(--text-secondary); font-size: 1.125rem; max-width: 600px; margin: 0 auto; }
+    
+    /* Problem */
+    .problem { background: var(--bg-card); }
+    .pain-points {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px; margin-bottom: 40px;
+    }
+    .pain-card {
+      background: var(--bg-dark); padding: 32px; border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .pain-card h3 { color: var(--accent-orange); margin-bottom: 12px; font-size: 1.25rem; }
+    .pain-card p { color: var(--text-secondary); }
+    
+    /* Solution */
+    .solution-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+    .solution-content h3 { font-size: 2rem; margin-bottom: 24px; }
+    .solution-content p { color: var(--text-secondary); margin-bottom: 24px; font-size: 1.125rem; }
+    .solution-features li {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 16px; color: var(--text-secondary);
+    }
+    .solution-features li::before {
+      content: '✓'; color: var(--accent-orange); font-weight: bold;
+      width: 24px; height: 24px; background: rgba(249, 115, 22, 0.1);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    }
+    
+    /* How It Works */
+    .steps {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+    }
+    .step {
+      text-align: center; padding: 32px;
+      background: var(--bg-card); border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .step-number {
+      width: 48px; height: 48px; background: linear-gradient(135deg, var(--accent-orange), var(--accent-gold));
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 1.25rem; margin: 0 auto 20px;
+    }
+    .step h3 { margin-bottom: 12px; font-size: 1.25rem; }
+    .step p { color: var(--text-secondary); font-size: 0.95rem; }
+    
+    /* Pricing */
+    .pricing { background: var(--bg-card); }
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .pricing-card {
+      background: var(--bg-dark); border-radius: 20px; padding: 40px 32px;
+      border: 1px solid rgba(255, 255, 255, 0.05); text-align: center;
+      transition: all 0.3s;
+    }
+    .pricing-card:hover { transform: translateY(-8px); border-color: rgba(249, 115, 22, 0.3); }
+    .pricing-card.featured {
+      border-color: var(--accent-orange); position: relative;
+      transform: scale(1.02);
+    }
+    .pricing-card.featured::before {
+      content: 'MOST POPULAR'; position: absolute; top: -12px; left: 50%;
+      transform: translateX(-50%); background: var(--accent-orange);
+      color: white; padding: 6px 20px; border-radius: 20px;
+      font-size: 0.75rem; font-weight: 700;
+    }
+    .pricing-card h3 { font-size: 1.5rem; margin-bottom: 8px; }
+    .pricing-card .setup { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 8px; }
+    .pricing-card .price {
+      font-size: 3rem; font-weight: 700; color: var(--accent-orange); margin-bottom: 8px;
+    }
+    .pricing-card .monthly { color: var(--text-secondary); margin-bottom: 24px; }
+    .pricing-features { list-style: none; text-align: left; margin-bottom: 32px; }
+    .pricing-features li {
+      padding: 10px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .pricing-features li::before { content: '✓'; color: var(--accent-orange); }
+    
+    /* Bonus */
+    .bonus {
+      background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(251, 191, 36, 0.1));
+      border: 2px solid var(--accent-orange); border-radius: 20px;
+      padding: 60px 40px; text-align: center; margin: 60px 0;
+    }
+    .bonus h3 { font-size: 2rem; margin-bottom: 16px; }
+    .bonus h3 span { color: var(--accent-orange); text-decoration: line-through; }
+    .bonus p { color: var(--text-secondary); font-size: 1.125rem; margin-bottom: 24px; }
+    
+    /* Use Cases */
+    .use-cases {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+    }
+    .use-case {
+      background: var(--bg-card); padding: 28px; border-radius: 12px;
+      text-align: center; transition: all 0.3s;
+    }
+    .use-case:hover { background: rgba(249, 115, 22, 0.1); }
+    .use-case-icon { font-size: 2.5rem; margin-bottom: 16px; }
+    .use-case h4 { font-size: 1rem; margin-bottom: 8px; }
+    
+    /* Quiz CTA */
+    .quiz-cta {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+      border-radius: 24px; padding: 80px 60px; text-align: center;
+    }
+    .quiz-cta h2 { font-size: 2.5rem; margin-bottom: 16px; }
+    .quiz-cta p { color: var(--text-secondary); font-size: 1.25rem; margin-bottom: 32px; max-width: 600px; margin-left: auto; margin-right: auto; }
+    
+    /* DIY Section */
+    .diy { background: var(--bg-card); text-align: center; }
+    .diy h3 { font-size: 1.75rem; margin-bottom: 16px; }
+    .diy p { color: var(--text-secondary); margin-bottom: 24px; }
+    
+    /* Reassurance */
+    .reassurance-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+    }
+    .reassurance-item {
+      text-align: center; padding: 32px;
+      background: var(--bg-card); border-radius: 16px;
+    }
+    .reassurance-item .icon { font-size: 2.5rem; margin-bottom: 16px; }
+    .reassurance-item h4 { margin-bottom: 8px; }
+    .reassurance-item p { color: var(--text-secondary); font-size: 0.9rem; }
+    
+    /* Footer CTA */
+    .footer-cta {
+      background: linear-gradient(135deg, var(--accent-orange), var(--accent-gold));
+      border-radius: 24px; padding: 80px 60px; text-align: center;
+    }
+    .footer-cta h2 { font-size: 2.5rem; margin-bottom: 16px; color: white; }
+    .footer-cta p { color: rgba(255, 255, 255, 0.9); font-size: 1.25rem; margin-bottom: 32px; }
+    .footer-cta .btn-white {
+      background: white; color: #1a1a25; padding: 16px 40px;
+      border-radius: 10px; font-weight: 600; text-decoration: none;
+      display: inline-block;
+    }
+    
+    /* Footer */
+    footer { padding: 40px 0; text-align: center; color: var(--text-secondary); border-top: 1px solid rgba(255, 255, 255, 0.05); }
+    
+    @media (max-width: 900px) {
+      .solution-grid, .steps, .pricing-grid, .use-cases, .reassurance-grid { grid-template-columns: 1fr; }
+      .pricing-card.featured { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+      <a href="/" class="logo">OpenClaw<span> Systems</span></a>
+      <div class="nav-links">
+        <a href="#pricing">Pricing</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#system-audit" class="nav-cta" onclick="event.preventDefault(); document.getElementById('system-audit').scrollIntoView({behavior: 'smooth'});">Get Free Audit</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Turn Open Claw Into a System That Actually Runs Your Business</h1>
+      <p>We design, install, and manage complete Open Claw systems so your workflows are connected, automated, and working the way they should — without the trial and error.</p>
+      <div class="hero-buttons">
+        <a href="#system-audit" class="btn btn-primary" onclick="event.preventDefault(); document.getElementById('system-audit').scrollIntoView({behavior: 'smooth'});">Get Setup Help</a>
+        <a href="#system-audit" class="btn btn-secondary" onclick="event.preventDefault(); document.getElementById('system-audit').scrollIntoView({behavior: 'smooth'});">Request System Audit</a>
+      </div>
+      <div class="trust-badges">
+        <span>✓ Complete system design</span>
+        <span>✓ Full installation</span>
+        <span>✓ Ongoing support available</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section problem" id="problem">
+    <div class="container">
+      <div class="section-header">
+        <h2>Most Open Claw Setups Never Become Real Systems</h2>
+        <p>You've got the skills. You've got the ideas.</p>
+      </div>
+      <div class="pain-points">
+        <div class="pain-card">
+          <h3>Nothing is fully connected</h3>
+          <p>Your skills work in isolation instead of as one coordinated system.</p>
+        </div>
+        <div class="pain-card">
+          <h3>Workflows stop halfway</h3>
+          <p>Automations start but don't complete the full sequence you need.</p>
+        </div>
+        <div class="pain-card">
+          <h3>Automations don't trigger properly</h3>
+          <p>Triggers miss or fire at the wrong time, breaking your workflow.</p>
+        </div>
+        <div class="pain-card">
+          <h3>Everything still requires manual work</h3>
+          <p>You're managing pieces instead of running a system.</p>
+        </div>
+      </div>
+      <p style="text-align: center; color: var(--text-secondary); font-size: 1.125rem; max-width: 800px; margin: 40px auto 0;">
+        So instead of saving time... you're managing pieces instead of running a system.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="solution">
+    <div class="container">
+      <div class="solution-grid">
+        <div class="solution-content">
+          <h3>We Build Complete Open Claw Systems</h3>
+          <p>We don't install random skills.</p>
+          <p>We design and implement complete systems where:</p>
+          <ul class="solution-features">
+            <li>everything is connected</li>
+            <li>workflows run automatically</li>
+            <li>actions trigger at the right time</li>
+            <li>your setup actually performs like a system</li>
+          </ul>
+          <p style="color: var(--text-secondary); margin-top: 24px;">This is how Open Claw was meant to be used.</p>
+        </div>
+        <div style="background: var(--bg-card); border-radius: 20px; padding: 40px; text-align: center;">
+          <div style="font-size: 5rem; margin-bottom: 20px;">⚡</div>
+          <h4 style="font-size: 1.5rem; margin-bottom: 16px;">Complete System Design</h4>
+          <p style="color: var(--text-secondary);">Connected. Automated. Reliable.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--bg-card);">
+    <div class="container">
+      <div class="section-header">
+        <h2>What We Handle</h2>
+      </div>
+      <div class="use-cases">
+        <div class="use-case">
+          <div class="use-case-icon">🔧</div>
+          <h4>Full Open Claw environment setup</h4>
+        </div>
+        <div class="use-case">
+          <div class="use-case-icon">📦</div>
+          <h4>Skill selection, installation, and configuration</h4>
+        </div>
+        <div class="use-case">
+          <div class="use-case-icon">⚡</div>
+          <h4>Workflow architecture and automation logic</h4>
+        </div>
+        <div class="use-case">
+          <div class="use-case-icon">🎯</div>
+          <h4>Trigger-based system design</h4>
+        </div>
+        <div class="use-case">
+          <div class="use-case-icon">🔄</div>
+          <h4>Ongoing system refinement (optional)</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Who This Is For</h2>
+      </div>
+      <div class="use-cases">
+        <div class="use-case">
+          <div class="use-case-icon">👤</div>
+          <h4>Open Claw users who want a fully working system</h4>
+        </div>
+        <div class="use-case">
+          <div class="use-case-icon">🏢</div>
+          <h4>Agencies building automation for clients</h4>
+        </div>
+        <div class="use-case">
+          <div class="use-case-icon">⚙️</div>
+          <h4>Operators who want reliable workflows</h4>
+        </div>
+        <div class="use-case">
+          <div class="use-case-icon">😤</div>
+          <h4>Anyone tired of piecing skills together manually</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how-it-works" style="background: var(--bg-card);">
+    <div class="container">
+      <div class="section-header">
+        <h2>How It Works</h2>
+        <p>Three steps to a complete Open Claw system</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>We Review Your Setup</h3>
+          <p>We review your current setup or intended use case</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>We Design & Implement</h3>
+          <p>We design and implement your system</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Your Workflows Run</h3>
+          <p>Your workflows run automatically and reliably</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section pricing" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <h2>Pre-Designed Workflow Systems</h2>
+        <p>Complete systems ready to install — no assembly required</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>Starter Workflow</h3>
+          <div class="setup">$497</div>
+          <div class="price">$297<span style="font-size: 1rem; color: var(--text-secondary);">/mo</span></div>
+          <div class="monthly">hosting & support</div>
+          <ul class="pricing-features">
+            <li>5 pre-designed workflows</li>
+            <li>Lead capture & response</li>
+            <li>Basic follow-up sequences</li>
+            <li>Email support (48hr)</li>
+            <li>Ready in 24-48 hours</li>
+          </ul>
+          <a href="#system-audit" class="btn btn-secondary" style="width: 100%; justify-content: center;" onclick="event.preventDefault(); document.getElementById('system-audit').scrollIntoView({behavior: 'smooth'});">Get Started</a>
+        </div>
+        <div class="pricing-card featured">
+          <h3>Professional System</h3>
+          <div class="setup">$997</div>
+          <div class="price">$297<span style="font-size: 1rem; color: var(--text-secondary);">/mo</span></div>
+          <div class="monthly">hosting & support</div>
+          <ul class="pricing-features">
+            <li>10 pre-designed workflows</li>
+            <li>Advanced automation sequences</li>
+            <li>Appointment booking</li>
+            <li>Priority support (24hr)</li>
+            <li>Monthly optimization</li>
+          </ul>
+          <a href="#system-audit" class="btn btn-primary" style="width: 100%; justify-content: center;" onclick="event.preventDefault(); document.getElementById('system-audit').scrollIntoView({behavior: 'smooth'});">Get Started</a>
+        </div>
+        <div class="pricing-card">
+          <h3>Enterprise System</h3>
+          <div class="setup">$1,497</div>
+          <div class="price">$497<span style="font-size: 1rem; color: var(--text-secondary);">/mo</span></div>
+          <div class="monthly">hosting & support</div>
+          <ul class="pricing-features">
+            <li>15+ custom workflows</li>
+            <li>White-glove setup</li>
+            <li>VIP support (12hr)</li>
+            <li>Strategy consulting</li>
+            <li>Dedicated account manager</li>
+          </ul>
+          <a href="#system-audit" class="btn btn-secondary" style="width: 100%; justify-content: center;" onclick="event.preventDefault(); document.getElementById('system-audit').scrollIntoView({behavior: 'smooth'});">Request Quote</a>
+        </div>
+      </div>
+      
+      <div class="bonus" style="margin-top: 60px;">
+        <h3>🎁 Free Installation <span style="text-decoration: line-through;">$297</span></h3>
+        <p>Installation fee waived with any workflow system purchase. Limited time offer.</p>
+        <a href="#system-audit" class="btn btn-primary" onclick="event.preventDefault(); document.getElementById('system-audit').scrollIntoView({behavior: 'smooth'});">Claim Free Installation →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="audit" style="background: var(--bg-card);">
+    <div class="container">
+      <div class="quiz-cta">
+        <h2>Free Open Claw System Audit</h2>
+        <p>We'll review your current setup and show you:</p>
+        <ul style="text-align: left; max-width: 500px; margin: 20px auto; color: var(--text-secondary);">
+          <li>what's missing</li>
+          <li>what's not connected</li>
+          <li>what's slowing you down</li>
+        </ul>
+        <p style="color: var(--text-secondary); margin: 20px 0;">...and how to turn it into a complete, working system.</p>
+        <a href="/audit-request.html" class="btn btn-primary" style="font-size: 1.125rem; padding: 18px 40px;">Request System Audit</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>You're In Good Hands</h2>
+        <p>We handle the technical work so you don't have to worry</p>
+      </div>
+      <div class="reassurance-grid">
+        <div class="reassurance-item">
+          <div class="icon">🔧</div>
+          <h4>We Handle Setup</h4>
+          <p>No technical skills required. We install and configure everything for you.</p>
+        </div>
+        <div class="reassurance-item">
+          <div class="icon">🛡️</div>
+          <h4>We Keep It Running</h4>
+          <p>Hosting, maintenance, and updates included. Your system stays online.</p>
+        </div>
+        <div class="reassurance-item">
+          <div class="icon">🎛️</div>
+          <h4>You Stay In Control</h4>
+          <p>You own your data and your systems. Cancel anytime if month-to-month.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="system-audit" style="background: var(--bg-card);">
+    <div class="container">
+      <div class="section-header">
+        <h2>Request Your System Audit</h2>
+        <p>Tell us a bit about your Open Claw setup and what you want it to do. We'll review it and get back to you.</p>
+      </div>
+      <div style="max-width: 600px; margin: 0 auto;">
+        <form id="audit-form" style="display: flex; flex-direction: column; gap: 20px;">
+          <div>
+            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Full Name *</label>
+            <input type="text" name="full_name" required style="width: 100%; padding: 14px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); background: var(--bg-dark); color: var(--text-primary); font-size: 1rem; font-family: inherit;">
+          </div>
+          <div>
+            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Email Address *</label>
+            <input type="email" name="email" required style="width: 100%; padding: 14px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); background: var(--bg-dark); color: var(--text-primary); font-size: 1rem; font-family: inherit;">
+          </div>
+          <div>
+            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Business / Agency Name</label>
+            <input type="text" name="business_name" style="width: 100%; padding: 14px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); background: var(--bg-dark); color: var(--text-primary); font-size: 1rem; font-family: inherit;">
+          </div>
+          <div>
+            <label style="display: block; margin-bottom: 8px; font-weight: 500;">Current Open Claw Setup Status *</label>
+            <select name="setup_status" required style="width: 100%; padding: 14px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); background: var(--bg-dark); color: var(--text-primary); font-size: 1rem; font-family: inherit; cursor: pointer;">
+              <option value="">Select your current status</option>
+              <option value="not_started">I have not started yet</option>
+              <option value="installed_not_configured">I have Open Claw installed but not configured</option>
+              <option value="skills_not_connected">I have some skills installed but nothing is fully connected</option>
+              <option value="partially_working">I have a partially working setup</option>
+              <option value="needs_optimization">I already have a working setup but need optimization</option>
+            </select>
+          </div>
+          <div>
+            <label style="display: block; margin-bottom: 8px; font-weight: 500;">What are you trying to build with Open Claw? *</label>
+            <textarea name="goal" required rows="4" style="width: 100%; padding: 14px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); background: var(--bg-dark); color: var(--text-primary); font-size: 1rem; font-family: inherit; resize: vertical;"></textarea>
+          </div>
+          <div>
+            <label style="display: block; margin-bottom: 8px; font-weight: 500;">What is currently not working or incomplete? *</label>
+            <textarea name="current_issue" required rows="4" style="width: 100%; padding: 14px 16px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); background: var(--bg-dark); color: var(--text-primary); font-size: 1rem; font-family: inherit; resize: vertical;"></textarea>
+          </div>
+          <button type="submit" id="submit-btn" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 10px;">Request System Audit</button>
+        </form>
+        <div id="form-success" style="display: none; text-align: center; padding: 40px;">
+          <h3 style="font-size: 1.5rem; margin-bottom: 16px;">Thanks — your request has been received.</h3>
+          <p style="color: var(--text-secondary);">We'll review your setup and get back to you shortly.</p>
+        </div>
+        <div id="form-error" style="display: none; text-align: center; padding: 20px; background: rgba(239, 68, 68, 0.1); border-radius: 10px; margin-top: 20px;">
+          <p style="color: #ef4444;">Something went wrong. Please try again or contact us directly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="footer-cta">
+        <h2>Open Claw is powerful — but only when it's built as a system.</h2>
+        <p>We make sure it actually works.</p>
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+          <a href="#system-audit" class="btn-white" onclick="event.preventDefault(); document.getElementById('system-audit').scrollIntoView({behavior: 'smooth'});">Get Setup Help</a>
+          <a href="#system-audit" class="btn btn-secondary" style="background: transparent; color: white; border: 2px solid white;" onclick="event.preventDefault(); document.getElementById('system-audit').scrollIntoView({behavior: 'smooth'});">Request System Audit</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 OpenClaw Systems. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Form submission handler
+    document.getElementById('audit-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const submitBtn = document.getElementById('submit-btn');
+      const originalText = submitBtn.textContent;
+      
+      // Show loading state
+      submitBtn.textContent = 'Submitting...';
+      submitBtn.disabled = true;
+      
+      // Collect form data
+      const formData = {
+        full_name: this.full_name.value,
+        email: this.email.value,
+        business_name: this.business_name.value,
+        setup_status: this.setup_status.value,
+        goal: this.goal.value,
+        current_issue: this.current_issue.value,
+        submitted_at: new Date().toISOString(),
+        to_email: 'info@openclawsystems.site'
+      };
+      
+      // Log payload for backend hookup
+      console.log('Form submission payload:', formData);
+      
+      // Send to Formspree endpoint (create account at formspree.io with this email)
+      // Replace 'YOUR_FORMSPREE_ID' with actual form ID after creating account
+      fetch('https://formspree.io/f/info@openclawsystems.site', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      }).then(response => {
+        if (response.ok) {
+          document.getElementById('audit-form').style.display = 'none';
+          document.getElementById('form-success').style.display = 'block';
+          document.getElementById('form-error').style.display = 'none';
+        } else {
+          throw new Error('Submission failed');
+        }
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      }).catch(error => {
+        // Fallback: create mailto link with form data
+        const subject = 'System Audit Request from ' + formData.full_name;
+        const body = 'Full Name: ' + formData.full_name + '%0D%0A' +
+                     'Email: ' + formData.email + '%0D%0A' +
+                     'Business: ' + (formData.business_name || 'N/A') + '%0D%0A' +
+                     'Setup Status: ' + formData.setup_status + '%0D%0A%0D%0A' +
+                     'Goal:%0D%0A' + formData.goal + '%0D%0A%0D%0A' +
+                     'Current Issue:%0D%0A' + formData.current_issue;
+        
+        window.location.href = 'mailto:info@openclawsystems.site?subject=' + encodeURIComponent(subject) + '&body=' + body;
+        
+        document.getElementById('audit-form').style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services | OpenClaw Systems</title>
+  <meta name="description" content="Complete Open Claw system setup, hosting, and support services. Pre-designed workflows ready to install.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --bg-card: #1e293b;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent-orange: #f97316;
+      --accent-gold: #fbbf24;
+      --accent-blue: #3b82f6;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    
+    /* Navigation */
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 0; position: sticky; top: 0;
+      background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); z-index: 100;
+    }
+    .logo { font-size: 1.5rem; font-weight: 800; color: var(--text-primary); text-decoration: none; }
+    .logo span { color: var(--accent-orange); }
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: color 0.3s; }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-cta {
+      background: linear-gradient(135deg, var(--accent-orange), var(--accent-gold));
+      color: white; padding: 12px 24px; border-radius: 8px;
+      font-weight: 600; text-decoration: none;
+    }
+    
+    /* Hero */
+    .hero {
+      padding: 80px 0 60px; text-align: center;
+      background: radial-gradient(ellipse at top, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .hero p {
+      font-size: 1.125rem; color: var(--text-secondary); max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    /* Sections */
+    .section { padding: 80px 0; }
+    .section-header { text-align: center; margin-bottom: 60px; }
+    .section-header h2 { font-size: 2.5rem; font-weight: 700; margin-bottom: 16px; }
+    .section-header p { color: var(--text-secondary); font-size: 1.125rem; max-width: 600px; margin: 0 auto; }
+    
+    /* Service Cards */
+    .services-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 24px;
+    }
+    .service-card {
+      background: var(--bg-card); border-radius: 20px; padding: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s;
+    }
+    .service-card:hover {
+      border-color: rgba(249, 115, 22, 0.3); transform: translateY(-4px);
+    }
+    .service-card h3 {
+      font-size: 1.5rem; margin-bottom: 12px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .service-card .price {
+      font-size: 2.5rem; font-weight: 700; color: var(--accent-orange);
+      margin-bottom: 8px;
+    }
+    .service-card .price-note {
+      color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 24px;
+    }
+    .service-card ul {
+      list-style: none; margin-bottom: 24px;
+    }
+    .service-card li {
+      padding: 8px 0; color: var(--text-secondary);
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .service-card li::before {
+      content: '✓'; color: var(--accent-orange); font-weight: bold;
+    }
+    
+    /* Workflow List */
+    .workflows { background: var(--bg-card); }
+    .workflow-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .workflow-item {
+      background: var(--bg-dark); padding: 24px; border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .workflow-item h4 { margin-bottom: 8px; font-size: 1.1rem; }
+    .workflow-item p { color: var(--text-secondary); font-size: 0.9rem; }
+    
+    /* CTA */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 10px; font-weight: 600;
+      text-decoration: none; transition: all 0.3s; font-size: 1rem;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-orange), var(--accent-gold));
+      color: white;
+    }
+    .btn-primary:hover { transform: translateY(-2px); }
+    .btn-secondary {
+      background: transparent; color: var(--text-primary);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    /* Footer CTA */
+    .footer-cta {
+      background: linear-gradient(135deg, var(--accent-orange), var(--accent-gold));
+      border-radius: 24px; padding: 60px 40px; text-align: center;
+    }
+    .footer-cta h2 { font-size: 2rem; margin-bottom: 16px; color: white; }
+    .footer-cta p { color: rgba(255, 255, 255, 0.9); margin-bottom: 24px; }
+    .footer-cta .btn-white {
+      background: white; color: #1a1a25; padding: 14px 32px;
+      border-radius: 10px; font-weight: 600; text-decoration: none;
+      display: inline-block;
+    }
+    
+    footer { padding: 40px 0; text-align: center; color: var(--text-secondary); border-top: 1px solid rgba(255, 255, 255, 0.05); }
+    
+    @media (max-width: 768px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+      <a href="/" class="logo">OpenClaw<span> Systems</span></a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/services">Services</a>
+        <a href="/how-it-works">How It Works</a>
+        <a href="/#system-audit" class="nav-cta">Get Free Audit</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Our Services</h1>
+      <p>Complete Open Claw systems built from pre-designed workflows. We handle everything from installation to ongoing optimization.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Pre-Designed Workflow Systems</h2>
+        <p>Choose the system that matches your needs</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>🚀 Starter Workflow</h3>
+          <div class="price">$497</div>
+          <div class="price-note">+ $297/month hosting & support</div>
+          <ul>
+            <li>5 pre-designed workflows installed</li>
+            <li>Lead capture & auto-response</li>
+            <li>Basic follow-up sequences</li>
+            <li>Email support (48hr response)</li>
+            <li>Ready in 24-48 hours</li>
+          </ul>
+          <a href="/#system-audit" class="btn btn-secondary">Get Started</a>
+        </div>
+        
+        <div class="service-card">
+          <h3>⚡ Professional System</h3>
+          <div class="price">$997</div>
+          <div class="price-note">+ $297/month hosting & support</div>
+          <ul>
+            <li>10 pre-designed workflows installed</li>
+            <li>Advanced automation sequences</li>
+            <li>Appointment booking integration</li>
+            <li>Priority support (24hr response)</li>
+            <li>Monthly optimization reviews</li>
+          </ul>
+          <a href="/#system-audit" class="btn btn-primary">Get Started</a>
+        </div>
+        
+        <div class="service-card">
+          <h3>🏆 Enterprise System</h3>
+          <div class="price">$1,497</div>
+          <div class="price-note">+ $497/month hosting & support</div>
+          <ul>
+            <li>15+ custom workflows</li>
+            <li>White-glove setup & configuration</li>
+            <li>VIP support (12hr response)</li>
+            <li>Quarterly strategy consulting</li>
+            <li>Dedicated account manager</li>
+          </ul>
+          <a href="/#system-audit" class="btn btn-secondary">Request Quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section workflows">
+    <div class="container">
+      <div class="section-header">
+        <h2>Workflows We Can Build</h2>
+        <p>Pre-designed automations ready to install</p>
+      </div>
+      <div class="workflow-grid">
+        <div class="workflow-item">
+          <h4>Lead Capture & Response</h4>
+          <p>Instant response to new leads with qualification questions</p>
+        </div>
+        <div class="workflow-item">
+          <h4>Follow-Up Sequences</h4>
+          <p>Multi-touch email/SMS follow-up that nurtures leads</p>
+        </div>
+        <div class="workflow-item">
+          <h4>Appointment Booking</h4>
+          <p>Self-scheduling with calendar integration and reminders</p>
+        </div>
+        <div class="workflow-item">
+          <h4>CRM Integration</h4>
+          <p>Automatic contact creation and data sync</p>
+        </div>
+        <div class="workflow-item">
+          <h4>Proposal Delivery</h4>
+          <p>Automated quote generation and delivery</p>
+        </div>
+        <div class="workflow-item">
+          <h4>Customer Onboarding</h4>
+          <p>Welcome sequences and next-step guidance</p>
+        </div>
+        <div class="workflow-item">
+          <h4>Review Requests</h4>
+          <p>Automated post-project review collection</p>
+        </div>
+        <div class="workflow-item">
+          <h4>Referral Generation</h4>
+          <p>Systematic referral request workflows</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="footer-cta">
+        <h2>Ready to Get Your System Built?</h2>
+        <p>Request a free audit and we'll recommend the right workflow system for your business.</p>
+        <a href="/#system-audit" class="btn-white">Request System Audit</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 OpenClaw Systems. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
