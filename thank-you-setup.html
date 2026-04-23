@@ -133,9 +133,13 @@
     <div class="card">
       <div class="success-icon">✓</div>
       <h1>Thank You!</h1>
-      <p class="subtitle">Your OpenClaw System purchase is confirmed. Let's get your setup scheduled.</p>
+      <p class="subtitle">Your OpenClaw System purchase is confirmed. You will be redirected to the setup form in a few seconds...</p>
       
-      <form id="setup-form">
+      <div style="text-align: center; margin: 40px 0;">
+        <a href="https://form.jotform.com/261125785682060" class="btn btn-primary">Go to Setup Form Now →</a>
+      </div>
+      
+      <form id="setup-form" style="display: none;">
         <div class="form-group">
           <label>Which system did you purchase? *</label>
           <select name="system_type" required>
@@ -205,38 +209,10 @@
   </div>
   
   <script>
-    document.getElementById('setup-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const formData = {
-        system_type: this.system_type.value,
-        full_name: this.full_name.value,
-        email: this.email.value,
-        company: this.company.value,
-        workflow_type: this.workflow_type.value,
-        goals: this.goals.value,
-        start_date: this.start_date.value,
-        submitted_at: new Date().toISOString()
-      };
-      
-      // Send to Formspree
-      fetch('https://formspree.io/f/info@openclawsystems.site', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      }).then(() => {
-        alert('Thank you! Your setup request has been submitted. We\'ll be in touch within 24 hours.');
-        this.reset();
-      }).catch(() => {
-        // Fallback to mailto
-        const subject = 'Setup Request - ' + formData.full_name;
-        const body = 'System: ' + formData.system_type + '\nName: ' + formData.full_name + '\nEmail: ' + formData.email + '\nCompany: ' + (formData.company || 'N/A') + '\nWorkflow: ' + formData.workflow_type + '\nStart: ' + formData.start_date + '\n\nGoals:\n' + formData.goals;
-        window.location.href = 'mailto:info@openclawsystems.site?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-      });
-    });
+    // Auto-redirect to Jotform after 3 seconds
+    setTimeout(function() {
+      window.location.href = 'https://form.jotform.com/261125785682060';
+    }, 3000);
   </script>
 </body>
 </html>
