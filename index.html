@@ -87,7 +87,7 @@
     /* Problem */
     .problem { background: var(--bg-card); }
     .pain-points {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      display: grid; grid-template-columns: repeat(4, 1fr);
       gap: 24px; margin-bottom: 40px;
     }
     .pain-card {
@@ -115,7 +115,7 @@
     
     /* How It Works */
     .steps {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
     }
     .step {
       text-align: center; padding: 32px;
@@ -227,9 +227,16 @@
     /* Footer */
     footer { padding: 40px 0; text-align: center; color: var(--text-secondary); border-top: 1px solid rgba(255, 255, 255, 0.05); }
     
-    @media (max-width: 900px) {
-      .solution-grid, .steps, .pricing-grid, .use-cases, .reassurance-grid { grid-template-columns: 1fr; }
+    @media (max-width: 1100px) {
+      .pain-points { grid-template-columns: repeat(2, 1fr); }
+      .use-cases { grid-template-columns: repeat(3, 1fr); }
+      .steps { grid-template-columns: repeat(2, 1fr); }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .reassurance-grid { grid-template-columns: 1fr; }
       .pricing-card.featured { transform: none; }
+    }
+    @media (max-width: 600px) {
+      .pain-points, .use-cases, .steps { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -341,6 +348,10 @@
           <div class="use-case-icon">🔄</div>
           <h4>Ongoing system refinement (optional)</h4>
         </div>
+        <div class="use-case">
+          <div class="use-case-icon">📊</div>
+          <h4>Performance monitoring & analytics setup</h4>
+        </div>
       </div>
     </div>
   </section>
@@ -400,6 +411,11 @@
           <div class="step-number">3</div>
           <h3>Your Workflows Run</h3>
           <p>Your workflows run automatically and reliably</p>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>Ongoing Support</h3>
+          <p>We monitor, maintain, and optimize your system</p>
         </div>
       </div>
     </div>
