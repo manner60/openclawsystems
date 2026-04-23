@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You - OpenClaw Systems</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --bg-card: #1e293b;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent-orange: #f97316;
+      --accent-gold: #fbbf24;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+    .container { max-width: 700px; width: 100%; }
+    .card {
+      background: var(--bg-card);
+      border-radius: 24px;
+      padding: 48px;
+      border: 2px solid var(--accent-orange);
+    }
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--accent-orange), var(--accent-gold));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      margin: 0 auto 32px;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .subtitle {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 1.125rem;
+      margin-bottom: 40px;
+    }
+    .form-group {
+      margin-bottom: 24px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      font-size: 1rem;
+      font-family: inherit;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 16px 32px;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-orange), var(--accent-gold));
+      color: white;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(249, 115, 22, 0.4);
+    }
+    .next-steps {
+      margin-top: 32px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .next-steps h3 {
+      font-size: 1.25rem;
+      margin-bottom: 16px;
+    }
+    .next-steps ul {
+      list-style: none;
+      color: var(--text-secondary);
+    }
+    .next-steps li {
+      padding: 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .next-steps li::before {
+      content: '✓';
+      color: var(--accent-orange);
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="success-icon">✓</div>
+      <h1>Thank You!</h1>
+      <p class="subtitle">Your OpenClaw System purchase is confirmed. Let's get your setup scheduled.</p>
+      
+      <form id="setup-form">
+        <div class="form-group">
+          <label>Which system did you purchase? *</label>
+          <select name="system_type" required>
+            <option value="">Select your system</option>
+            <option value="starter">Starter System (5 skills)</option>
+            <option value="professional">Professional System (10 skills)</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" name="full_name" required placeholder="Your full name">
+        </div>
+        
+        <div class="form-group">
+          <label>Email Address *</label>
+          <input type="email" name="email" required placeholder="your@email.com">
+        </div>
+        
+        <div class="form-group">
+          <label>Business/Company Name</label>
+          <input type="text" name="company" placeholder="Your business name">
+        </div>
+        
+        <div class="form-group">
+          <label>What type of workflows do you need? *</label>
+          <select name="workflow_type" required>
+            <option value="">Select workflow type</option>
+            <option value="lead_gen">Lead Generation & Capture</option>
+            <option value="sales">Sales & Follow-up</option>
+            <option value="support">Customer Support</option>
+            <option value="operations">Business Operations</option>
+            <option value="marketing">Marketing Automation</option>
+            <option value="mixed">Mixed/Combination</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label>Tell us about your current setup and goals *</label>
+          <textarea name="goals" required placeholder="Describe what you're currently using, what isn't working, and what you want to achieve with your OpenClaw system..."></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label>Preferred start date</label>
+          <select name="start_date">
+            <option value="">Select preferred timing</option>
+            <option value="asap">As soon as possible</option>
+            <option value="1week">Within 1 week</option>
+            <option value="2weeks">Within 2 weeks</option>
+            <option value="1month">Within 1 month</option>
+          </select>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Submit Setup Request →</button>
+      </form>
+      
+      <div class="next-steps">
+        <h3>What happens next?</h3>
+        <ul>
+          <li>We'll review your setup request within 24 hours</li>
+          <li>You'll receive an email with next steps</li>
+          <li>We'll schedule your system design call</li>
+          <li>Your OpenClaw system will be ready in 24-48 hours</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    document.getElementById('setup-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = {
+        system_type: this.system_type.value,
+        full_name: this.full_name.value,
+        email: this.email.value,
+        company: this.company.value,
+        workflow_type: this.workflow_type.value,
+        goals: this.goals.value,
+        start_date: this.start_date.value,
+        submitted_at: new Date().toISOString()
+      };
+      
+      // Send to Formspree
+      fetch('https://formspree.io/f/info@openclawsystems.site', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      }).then(() => {
+        alert('Thank you! Your setup request has been submitted. We\'ll be in touch within 24 hours.');
+        this.reset();
+      }).catch(() => {
+        // Fallback to mailto
+        const subject = 'Setup Request - ' + formData.full_name;
+        const body = 'System: ' + formData.system_type + '\nName: ' + formData.full_name + '\nEmail: ' + formData.email + '\nCompany: ' + (formData.company || 'N/A') + '\nWorkflow: ' + formData.workflow_type + '\nStart: ' + formData.start_date + '\n\nGoals:\n' + formData.goals;
+        window.location.href = 'mailto:info@openclawsystems.site?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      });
+    });
+  </script>
+</body>
+</html>
