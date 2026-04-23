@@ -133,7 +133,7 @@
     /* Pricing */
     .pricing { background: var(--bg-card); }
     .pricing-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
     }
     .pricing-card {
       background: var(--bg-dark); border-radius: 20px; padding: 40px 32px;
@@ -232,7 +232,7 @@
       .pain-points { grid-template-columns: repeat(2, 1fr); }
       .use-cases { grid-template-columns: repeat(3, 1fr); }
       .steps { grid-template-columns: repeat(2, 1fr); }
-      .pricing-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: repeat(2, 1fr); }
       .reassurance-grid { grid-template-columns: 1fr; }
       .pricing-card.featured { transform: none; }
     }
@@ -462,7 +462,19 @@
             <li>White-glove setup</li>
             <li>VIP support (12hr)</li>
             <li>Strategy consulting</li>
-            <li>Dedicated account manager</li>
+          </ul>
+          <a href="#system-audit" class="btn btn-secondary" style="width: 100%; justify-content: center;" onclick="event.preventDefault(); document.getElementById('system-audit').scrollIntoView({behavior: 'smooth'});">Request Quote</a>
+        </div>
+        <div class="pricing-card">
+          <h3>Custom</h3>
+          <div class="setup">Contact Us</div>
+          <div class="price">Custom</div>
+          <div class="monthly">tailored solutions</div>
+          <ul class="pricing-features">
+            <li>Bespoke workflow design</li>
+            <li>Custom integrations</li>
+            <li>Private skill development</li>
+            <li>Dedicated project manager</li>
           </ul>
           <a href="#system-audit" class="btn btn-secondary" style="width: 100%; justify-content: center;" onclick="event.preventDefault(); document.getElementById('system-audit').scrollIntoView({behavior: 'smooth'});">Request Quote</a>
         </div>
