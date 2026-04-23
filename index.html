@@ -176,15 +176,16 @@
     
     /* Use Cases */
     .use-cases {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
     }
     .use-case {
-      background: var(--bg-card); padding: 28px; border-radius: 12px;
-      text-align: center; transition: all 0.3s;
+      background: var(--bg-card); padding: 40px 32px; border-radius: 16px;
+      text-align: center; transition: all 0.3s; min-height: 200px;
+      display: flex; flex-direction: column; justify-content: center;
     }
     .use-case:hover { background: rgba(249, 115, 22, 0.1); }
-    .use-case-icon { font-size: 2.5rem; margin-bottom: 16px; }
-    .use-case h4 { font-size: 1rem; margin-bottom: 8px; }
+    .use-case-icon { font-size: 3rem; margin-bottom: 20px; }
+    .use-case h4 { font-size: 1.125rem; margin-bottom: 12px; line-height: 1.4; }
     
     /* Quiz CTA */
     .quiz-cta {
@@ -375,16 +376,16 @@
           <h4>Operators who want reliable workflows</h4>
         </div>
         <div class="use-case">
-          <div class="use-case-icon">😤</div>
-          <h4>Anyone tired of piecing skills together manually</h4>
-        </div>
-        <div class="use-case">
           <div class="use-case-icon">💼</div>
           <h4>Business owners wanting to automate operations</h4>
         </div>
         <div class="use-case">
           <div class="use-case-icon">🚀</div>
           <h4>Startups ready to scale with automation</h4>
+        </div>
+        <div class="use-case">
+          <div class="use-case-icon">😤</div>
+          <h4>Anyone tired of piecing skills together manually</h4>
         </div>
       </div>
     </div>
