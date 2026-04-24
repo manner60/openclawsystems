@@ -116,7 +116,16 @@
     
     /* How It Works */
     .steps {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 900px; margin: 0 auto; align-items: start;
+    }
+    .step {
+      display: flex; flex-direction: column; min-height: 200px;
+    }
+    .step h3 {
+      min-height: 3.5rem; display: flex; align-items: center; justify-content: center; flex-direction: column;
+    }
+    .step p {
+      margin-top: auto;
     }
     .step {
       text-align: center; padding: 32px;
@@ -411,7 +420,7 @@
         </div>
         <div class="step">
           <div class="step-number">3</div>
-          <h3>Your Workflows Run</h3>
+          <h3>Your Workflows Run<br>As Intended</h3>
           <p>Your workflows run automatically and reliably</p>
         </div>
       </div>
